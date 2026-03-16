@@ -14,68 +14,68 @@ const peliculas = await getCollection('peliculas');
   title="CineIndustria | Cine, imagen y archivo desde Latinoamérica"
   description="Laboratorio editorial para repensar la imagen, el cine y el archivo en la era de la IA desde Latinoamérica."
 >
-  <div class="site-shell">
+  <div class="relative z-0 w-[min(calc(100%-20px),1220px)] md:w-[min(calc(100%-32px),1220px)] mx-auto pt-3 md:pt-5 pb-10 overflow-hidden">
     <Header />
 
-    <main id="top">
+    <main id="top" class="grid gap-7">
       <!-- Hero -->
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Laboratorio para repensar la imagen / desde Latinoamérica</p>
-          <h1>
+      <section class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.16fr)_minmax(0,0.84fr)] gap-7 p-[22px] lg:p-[clamp(28px,4vw,52px)] border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] shadow-[var(--shadow-sm)] bg-[linear-gradient(135deg,rgba(255,255,255,0.26),transparent_44%),radial-gradient(circle_at_top_right,rgba(189,58,51,0.16),transparent_24%),var(--color-paper-panel)]">
+        <div class="flex flex-col min-w-0">
+          <p class="m-0 mb-3.5 text-[var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Laboratorio para repensar la imagen / desde Latinoamérica</p>
+          <h1 class="m-0 font-[family-name:var(--font-archivo)] font-semibold tracking-[-0.06em] text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(3.3rem,7vw,6.2rem)] leading-[0.9] break-words max-w-none lg:max-w-[10ch]">
             Cine, imagen y archivo.
-            <span>Laboratorio editorial.</span>
+            <span class="block text-[var(--color-signal)]">Laboratorio editorial.</span>
             Señal en desarrollo.
           </h1>
-          <p class="hero-text">
+          <p class="m-0 mt-[22px] text-[var(--color-ink-soft)] text-[1.02rem] leading-[1.7] max-w-[42ch]">
             CineIndustria lee la crisis contemporánea de la imagen. Cine, archivo, teoría crítica,
             software e IA en una misma mesa.
           </p>
-          <p class="hero-subtext">
+          <p class="m-0 mt-2.5 text-[var(--color-ink-soft)] text-[0.96rem] leading-[1.7] max-w-[42ch]">
             Menos flujo. Más lectura, montaje y conflicto.
           </p>
 
-          <div class="hero-actions">
-            <a class="button button-ink" href="#preguntas">Abrir preguntas</a>
-            <a class="button button-ghost" href="#peliculas">Ver películas</a>
+          <div class="flex flex-col md:flex-row flex-wrap gap-3 mt-7">
+            <a class="button min-h-[48px] w-full md:w-auto inline-flex items-center justify-center px-[18px] rounded-full border border-[var(--color-line-strong)] no-underline uppercase tracking-[0.08em] font-[family-name:var(--font-archivo)] text-[0.76rem] bg-[var(--color-night)] text-[var(--color-paper-strong)] shadow-[0_12px_24px_rgba(21,21,23,0.18)]" href="#preguntas">Abrir preguntas</a>
+            <a class="button min-h-[48px] w-full md:w-auto inline-flex items-center justify-center px-[18px] rounded-full border border-[var(--color-line-strong)] no-underline uppercase tracking-[0.08em] font-[family-name:var(--font-archivo)] text-[0.76rem] bg-[rgba(255,255,255,0.44)]" href="#peliculas">Ver películas</a>
           </div>
 
-          <ul class="hero-stats">
-            {stats.map((item) => (
-              <li>
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
+          <ul class="grid grid-cols-1 md:grid-cols-[repeat(3,minmax(0,max-content))] items-start gap-3.5 md:gap-[18px] mt-[34px] p-0 list-none">
+            {stats.map((item, i) => (
+              <li class={`min-h-0 grid content-start gap-2 pt-3.5 md:pt-0.5 md:pr-[22px] border-t md:border-t-0 md:border-r border-[var(--color-line)] rounded-none ${i === stats.length - 1 ? 'md:pr-0 md:border-r-0' : ''}`}>
+                <strong class="font-[family-name:var(--font-archivo)] text-[2rem] leading-[0.9] tracking-[-0.05em]">{item.value}</strong>
+                <span class="text-[var(--color-ink-soft)] text-[0.92rem] leading-[1.5]">{item.label}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <aside class="hero-panel" aria-label="Resumen editorial">
-          <div class="hero-panel-block">
-            <p class="section-kicker">Punto de partida</p>
-            <h2>La imagen ya no garantiza evidencia.</h2>
-            <p>
+        <aside class="flex flex-col min-w-0 gap-4" aria-label="Resumen editorial">
+          <div class="p-[26px] rounded-[20px] lg:rounded-[var(--radius-lg)] bg-[var(--color-night)] text-[var(--color-paper-strong)]">
+            <p class="m-0 mb-3.5 text-[rgba(248,242,235,0.64)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Punto de partida</p>
+            <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(1.7rem,4vw,2.5rem)] leading-[1.02] tracking-[-0.06em] max-w-[13ch]">La imagen ya no garantiza evidencia.</h2>
+            <p class="m-0 mt-4 text-[rgba(248,242,235,0.76)] text-base leading-[1.7]">
               Si producir imágenes se volvió trivial, leerlas vuelve a ser una tarea seria.
             </p>
           </div>
 
-          <div class="hero-panel-grid">
-            <article class="hero-note">
-              <span>Verdad</span>
-              <p>No toda verdad visual es evidencia.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <article class="grid content-start gap-3 pt-4 pb-[18px] border-t border-[var(--color-line)] bg-transparent rounded-none">
+              <span class="text-[var(--color-ink-faint)] text-[0.74rem] leading-none tracking-[0.16em] uppercase">Verdad</span>
+              <p class="m-0 text-[0.97rem] leading-[1.6]">No toda verdad visual es evidencia.</p>
             </article>
-            <article class="hero-note">
-              <span>Técnica</span>
-              <p>Todo aparato reorganiza la mirada.</p>
+            <article class="grid content-start gap-3 pt-4 pb-[18px] border-t border-[var(--color-line)] bg-transparent rounded-none">
+              <span class="text-[var(--color-ink-faint)] text-[0.74rem] leading-none tracking-[0.16em] uppercase">Técnica</span>
+              <p class="m-0 text-[0.97rem] leading-[1.6]">Todo aparato reorganiza la mirada.</p>
             </article>
-            <article class="hero-note hero-note-dark">
-              <span>Sistema cultural</span>
-              <p>Las plataformas también producen estética.</p>
+            <article class="md:col-span-2 grid content-start gap-3 p-[22px] rounded-[20px] lg:rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,var(--color-night-soft),var(--color-night))] border border-[rgba(248,242,235,0.08)]">
+              <span class="text-[rgba(248,242,235,0.86)] text-[0.74rem] leading-none tracking-[0.16em] uppercase">Sistema cultural</span>
+              <p class="m-0 text-[rgba(248,242,235,0.86)] text-[0.97rem] leading-[1.6]">Las plataformas también producen estética.</p>
             </article>
           </div>
 
-          <div class="hero-visual" aria-label="Archivo visual">
-            <figure class="hero-visual-main">
+          <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1.18fr)_minmax(120px,0.82fr)] gap-4" aria-label="Archivo visual">
+            <figure class="hero-visual-main relative overflow-hidden m-0 rounded-[20px] lg:rounded-[var(--radius-lg)] border border-[rgba(248,242,235,0.08)] bg-[linear-gradient(180deg,#15171a,#0f1012)] shadow-[0_18px_40px_rgba(21,21,23,0.24)]">
               <img
                 src="/assets/site/hero-poster-red.webp"
                 alt="Póster rojo del archivo CineIndustria."
@@ -83,15 +83,16 @@ const peliculas = await getCollection('peliculas');
                 height="1200"
                 loading="eager"
                 decoding="async"
+                class="w-full h-full object-cover aspect-[4/5]"
               />
               <figcaption>
-                <strong>signal_01</strong>
-                <span>archivo activo / imagen en disputa</span>
+                <strong class="font-[family-name:var(--font-archivo)] text-base tracking-[-0.03em] text-[rgba(248,242,235,0.92)]">signal_01</strong>
+                <span class="text-[0.78rem] tracking-[0.12em] uppercase text-[rgba(248,242,235,0.92)]">archivo activo / imagen en disputa</span>
               </figcaption>
             </figure>
 
-            <div class="hero-visual-stack">
-              <figure class="hero-visual-card">
+            <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+              <figure class="hero-visual-card relative overflow-hidden m-0 rounded-[20px] lg:rounded-[var(--radius-lg)] border border-[rgba(248,242,235,0.08)] bg-[linear-gradient(180deg,#15171a,#0f1012)] shadow-[0_18px_40px_rgba(21,21,23,0.24)]">
                 <img
                   src="/assets/site/hero-poster-ink.webp"
                   alt="Póster en tinta del archivo CineIndustria."
@@ -99,9 +100,10 @@ const peliculas = await getCollection('peliculas');
                   height="1200"
                   loading="lazy"
                   decoding="async"
+                  class="w-full h-full object-cover aspect-[1/1.08]"
                 />
               </figure>
-              <figure class="hero-visual-card">
+              <figure class="hero-visual-card relative overflow-hidden m-0 rounded-[20px] lg:rounded-[var(--radius-lg)] border border-[rgba(248,242,235,0.08)] bg-[linear-gradient(180deg,#15171a,#0f1012)] shadow-[0_18px_40px_rgba(21,21,23,0.24)]">
                 <img
                   src="/assets/site/hero-poster-paper.webp"
                   alt="Póster en papel del archivo CineIndustria."
@@ -109,6 +111,7 @@ const peliculas = await getCollection('peliculas');
                   height="1200"
                   loading="lazy"
                   decoding="async"
+                  class="w-full h-full object-cover aspect-[1/1.08]"
                 />
               </figure>
             </div>
@@ -117,39 +120,39 @@ const peliculas = await getCollection('peliculas');
       </section>
 
       <!-- Preguntas -->
-      <section class="section manifesto" id="preguntas">
-        <div class="section-head">
-          <p class="section-kicker">Preguntas</p>
-          <h2>Tres preguntas para no mirar en automático.</h2>
-          <p class="section-intro">
+      <section class="border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] bg-[var(--color-paper-panel)] shadow-[var(--shadow-sm)] p-[22px] lg:p-[clamp(28px,4vw,44px)]" id="preguntas">
+        <div class="grid gap-3 max-w-[840px] mb-6 min-w-0">
+          <p class="m-0 text-[var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Preguntas</p>
+          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em]">Tres preguntas para no mirar en automático.</h2>
+          <p class="m-0 text-[var(--color-ink-soft)] text-base leading-[1.7] max-w-[64ch]">
             Ver ya no alcanza. Hay que discutir qué se mira, desde dónde y bajo qué sistema técnico.
           </p>
         </div>
-        <div class="manifesto-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {manifesto.map((item) => (
-            <article class="manifesto-card">
-              <strong>{item.title}</strong>
-              <p>{item.text}</p>
+            <article class="manifesto-card relative min-h-[220px] grid content-start gap-3.5 p-6 pt-7 overflow-hidden rounded-[20px] lg:rounded-[var(--radius-lg)] border border-[var(--color-line)] bg-[rgba(255,255,255,0.4)]">
+              <strong class="font-[family-name:var(--font-archivo)] text-[1.36rem] leading-[1.02] tracking-[-0.04em]">{item.title}</strong>
+              <p class="m-0 text-[var(--color-ink-soft)] leading-[1.65]">{item.text}</p>
             </article>
           ))}
         </div>
       </section>
 
       <!-- Ensayos -->
-      <section class="section essay-section" id="ensayos">
-        <div class="section-head">
-          <p class="section-kicker">Ensayos</p>
-          <h2>Textos para hackear la mirada.</h2>
-          <p class="section-intro">
+      <section class="border border-[rgba(248,242,235,0.08)] rounded-3xl lg:rounded-[34px] shadow-[var(--shadow-sm)] p-[22px] lg:p-[clamp(28px,4vw,44px)] bg-[radial-gradient(circle_at_top_right,rgba(189,58,51,0.16),transparent_22%),linear-gradient(180deg,#17191c,#0f1013)]" id="ensayos">
+        <div class="grid gap-3 max-w-[840px] mb-6 min-w-0">
+          <p class="m-0 text-[rgba(248,242,235,0.66)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Ensayos</p>
+          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em] text-[var(--color-paper-strong)]">Textos para hackear la mirada.</h2>
+          <p class="m-0 text-[rgba(248,242,235,0.66)] text-base leading-[1.7] max-w-[64ch]">
             No es bibliografía ornamental. Es una caja de herramientas crítica.
           </p>
         </div>
-        <div class="series-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {ensayos.map((entry) => (
-            <a href={`/ensayos/${entry.id}/`} class="series-card series-card-link">
-              <em>{entry.data.author} / {entry.data.year}</em>
-              <strong>{entry.data.title}</strong>
-              <p>{entry.data.description}</p>
+            <a href={`/ensayos/${entry.id}/`} class="series-card series-card-link min-h-[210px] grid content-start gap-4 p-6 rounded-[20px] lg:rounded-[var(--radius-lg)] border border-[rgba(248,242,235,0.08)] bg-[linear-gradient(180deg,rgba(248,242,235,0.05),transparent_32%),linear-gradient(180deg,#1b1d21,#111316)]">
+              <em class="font-[family-name:var(--font-archivo)] not-italic text-[rgba(248,242,235,0.5)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">{entry.data.author} / {entry.data.year}</em>
+              <strong class="font-[family-name:var(--font-archivo)] text-[var(--color-paper-strong)] text-[1.52rem] leading-none tracking-[-0.05em]">{entry.data.title}</strong>
+              <p class="m-0 text-[rgba(248,242,235,0.78)] leading-[1.6]">{entry.data.description}</p>
             </a>
           ))}
         </div>
@@ -159,18 +162,18 @@ const peliculas = await getCollection('peliculas');
       <FilmCarousel />
 
       <!-- Lab Band -->
-      <section class="section lab-band" aria-label="Posición frente a la IA">
-        <div class="lab-band-shell">
-          <div class="lab-band-head">
-            <p class="section-kicker">Ahora</p>
-            <h2>La IA volvió trivial la producción visual. La tarea difícil vuelve a ser mirar.</h2>
+      <section class="border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] bg-[var(--color-paper-panel)] shadow-[var(--shadow-sm)] p-[22px] lg:p-[clamp(28px,4vw,44px)]" aria-label="Posición frente a la IA">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] min-w-0 gap-5 p-[22px] lg:p-7 rounded-[20px] lg:rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,var(--color-night-soft),var(--color-night))] text-[var(--color-paper-strong)]">
+          <div>
+            <p class="m-0 mb-3.5 text-[rgba(248,242,235,0.6)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Ahora</p>
+            <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2rem,4vw,3.4rem)] leading-none tracking-[-0.06em]">La IA volvió trivial la producción visual. La tarea difícil vuelve a ser mirar.</h2>
           </div>
-          <div class="lab-band-copy">
-            <p>
+          <div class="grid gap-4">
+            <p class="m-0 text-[rgba(248,242,235,0.8)] text-base leading-[1.7]">
               CineIndustria trabaja entre memoria fílmica, teoría de la imagen, crítica cultural,
               archivo, software e imagen sintética.
             </p>
-            <p>
+            <p class="m-0 text-[rgba(248,242,235,0.8)] text-base leading-[1.7]">
               La apuesta no es producir más flujo. Es sostener una práctica editorial capaz de
               discutir el presente con imágenes.
             </p>

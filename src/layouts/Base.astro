@@ -58,9 +58,9 @@ const jsonLd = structuredData || defaultStructuredData;
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#141517" id="meta-theme-color" />
+    <meta name="theme-color" content="#141517" />
     <meta name="msapplication-TileColor" content="#141517" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light only" />
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="CineIndustria" />
@@ -103,16 +103,6 @@ const jsonLd = structuredData || defaultStructuredData;
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Dark mode: prevent flash -->
-    <script is:inline>
-      (function(){
-        var t = localStorage.getItem('theme');
-        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
-
     <!-- Google Analytics -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script is:inline>
@@ -125,16 +115,5 @@ const jsonLd = structuredData || defaultStructuredData;
   <body>
     <slot />
     <SearchOverlay />
-
-    <!-- Dark mode toggle -->
-    <script>
-      const toggle = document.getElementById('theme-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          const isDark = document.documentElement.classList.toggle('dark');
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-      }
-    </script>
   </body>
 </html>
