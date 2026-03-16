@@ -115,6 +115,11 @@ img {
   background: rgba(189, 58, 51, 0.16);
 }
 
+/* Prevent grid children from expanding beyond container */
+* {
+  min-width: 0;
+}
+
 /* Pulsing red dot on brandmark */
 @keyframes pulse-live {
   0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(189, 58, 51, 0.5); }
