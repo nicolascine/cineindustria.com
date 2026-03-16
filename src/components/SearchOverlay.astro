@@ -99,7 +99,7 @@ const searchIndex = [
   }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && !overlay.hidden === false && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+    if (e.key === '/' && overlay.hidden && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
       e.preventDefault();
       openSearch();
     }

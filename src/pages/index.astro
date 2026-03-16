@@ -14,15 +14,15 @@ const peliculas = await getCollection('peliculas');
   title="CineIndustria | Cine, imagen y archivo desde Latinoamérica"
   description="Laboratorio editorial para repensar la imagen, el cine y el archivo en la era de la IA desde Latinoamérica."
 >
-  <div class="relative z-0 w-[min(calc(100%-20px),1220px)] md:w-[min(calc(100%-32px),1220px)] mx-auto pt-3 md:pt-5 pb-10">
+  <div class="relative z-0 w-[min(calc(100%-20px),1220px)] md:w-[min(calc(100%-32px),1220px)] mx-auto pt-[max(0.75rem,env(safe-area-inset-top))] md:pt-5 pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
     <Header />
 
     <main id="top" class="grid gap-7 min-w-0">
       <!-- Hero -->
-      <section class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.16fr)_minmax(0,0.84fr)] gap-7 p-[22px] lg:p-[clamp(28px,4vw,52px)] border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] shadow-[var(--shadow-sm)] bg-[linear-gradient(135deg,rgba(255,255,255,0.26),transparent_44%),radial-gradient(circle_at_top_right,rgba(189,58,51,0.16),transparent_24%),var(--color-paper-panel)]">
+      <section aria-label="Presentación" class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.16fr)_minmax(0,0.84fr)] gap-7 p-[22px] lg:p-[clamp(28px,4vw,52px)] border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] shadow-[var(--shadow-sm)] bg-[linear-gradient(135deg,rgba(255,255,255,0.26),transparent_44%),radial-gradient(circle_at_top_right,rgba(189,58,51,0.16),transparent_24%),var(--color-paper-panel)]">
         <div class="flex flex-col min-w-0">
           <p class="m-0 mb-3.5 text-[color:var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Laboratorio para repensar la imagen / desde Latinoamérica</p>
-          <h1 class="m-0 font-[family-name:var(--font-archivo)] font-semibold tracking-[-0.06em] text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(3.3rem,7vw,6.2rem)] leading-[0.9] break-words max-w-none lg:max-w-[10ch]">
+          <h1 class="m-0 font-[family-name:var(--font-archivo)] font-semibold tracking-[-0.06em] text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(3.3rem,7vw,6.2rem)] leading-[0.9] break-words max-w-none lg:max-w-[10ch] text-balance">
             Cine, imagen y archivo.
             <span class="block text-[color:var(--color-signal)]">Laboratorio editorial.</span>
             Señal en desarrollo.
@@ -43,7 +43,7 @@ const peliculas = await getCollection('peliculas');
           <ul class="grid grid-cols-1 md:grid-cols-[repeat(3,minmax(0,max-content))] items-start gap-3.5 md:gap-[18px] mt-[34px] p-0 list-none">
             {stats.map((item, i) => (
               <li class={`min-h-0 grid content-start gap-2 pt-3.5 md:pt-0.5 md:pr-[22px] border-t md:border-t-0 md:border-r border-[var(--color-line)] rounded-none ${i === stats.length - 1 ? 'md:pr-0 md:border-r-0' : ''}`}>
-                <strong class="font-[family-name:var(--font-archivo)] text-[2rem] leading-[0.9] tracking-[-0.05em]">{item.value}</strong>
+                <strong class="font-[family-name:var(--font-archivo)] text-[2rem] leading-[0.9] tracking-[-0.05em] tabular-nums">{item.value}</strong>
                 <span class="text-[color:var(--color-ink-soft)] text-[0.92rem] leading-[1.5]">{item.label}</span>
               </li>
             ))}
@@ -123,7 +123,7 @@ const peliculas = await getCollection('peliculas');
       <section class="border border-[var(--color-line)] rounded-3xl lg:rounded-[34px] bg-[var(--color-paper-panel)] shadow-[var(--shadow-sm)] p-[22px] lg:p-[clamp(28px,4vw,44px)]" id="preguntas">
         <div class="grid gap-3 max-w-[840px] mb-6 min-w-0">
           <p class="m-0 text-[color:var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Preguntas</p>
-          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em]">Tres preguntas para no mirar en automático.</h2>
+          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em] text-balance">Tres preguntas para no mirar en automático.</h2>
           <p class="m-0 text-[color:var(--color-ink-soft)] text-base leading-[1.7] max-w-[64ch]">
             Ver ya no alcanza. Hay que discutir qué se mira, desde dónde y bajo qué sistema técnico.
           </p>
@@ -142,7 +142,7 @@ const peliculas = await getCollection('peliculas');
       <section class="border border-[rgba(248,242,235,0.08)] rounded-3xl lg:rounded-[34px] shadow-[var(--shadow-sm)] p-[22px] lg:p-[clamp(28px,4vw,44px)] bg-[radial-gradient(circle_at_top_right,rgba(189,58,51,0.16),transparent_22%),linear-gradient(180deg,#17191c,#0f1013)]" id="ensayos">
         <div class="grid gap-3 max-w-[840px] mb-6 min-w-0">
           <p class="m-0 text-[rgba(248,242,235,0.66)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Ensayos</p>
-          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em] text-[color:var(--color-paper-strong)]">Textos para hackear la mirada.</h2>
+          <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em] text-[color:var(--color-paper-strong)] text-balance">Textos para hackear la mirada.</h2>
           <p class="m-0 text-[rgba(248,242,235,0.66)] text-base leading-[1.7] max-w-[64ch]">
             No es bibliografía ornamental. Es una caja de herramientas crítica.
           </p>
@@ -166,7 +166,7 @@ const peliculas = await getCollection('peliculas');
         <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] min-w-0 gap-5 p-[22px] lg:p-7 rounded-[20px] lg:rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,var(--color-night-soft),var(--color-night))] text-[color:var(--color-paper-strong)]">
           <div>
             <p class="m-0 mb-3.5 text-[rgba(248,242,235,0.6)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Ahora</p>
-            <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2rem,4vw,3.4rem)] leading-none tracking-[-0.06em]">La IA volvió trivial la producción visual. La tarea difícil vuelve a ser mirar.</h2>
+            <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2rem,4vw,3.4rem)] leading-none tracking-[-0.06em] text-balance">La IA volvió trivial la producción visual. La tarea difícil vuelve a ser mirar.</h2>
           </div>
           <div class="grid gap-4">
             <p class="m-0 text-[rgba(248,242,235,0.8)] text-base leading-[1.7]">
