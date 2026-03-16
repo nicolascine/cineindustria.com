@@ -3,17 +3,39 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: string;
   canonical?: string;
+  structuredData?: Record<string, unknown>;
 }
 
 const {
   title,
   description,
   ogImage = 'https://cineindustria.com/assets/site/og-card.jpg',
-  canonical = 'https://cineindustria.com/',
+  ogType = 'website',
+  canonical = Astro.url.href,
+  structuredData,
 } = Astro.props;
 
 import '../styles/global.css';
+import SearchOverlay from '../components/SearchOverlay.astro';
+
+const defaultStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CineIndustria",
+  "url": "https://cineindustria.com/",
+  "description": description,
+  "inLanguage": "es-CL",
+  "publisher": {
+    "@type": "Organization",
+    "name": "CineIndustria",
+    "url": "https://cineindustria.com/",
+    "logo": "https://cineindustria.com/assets/icons/icon-512.png"
+  }
+};
+
+const jsonLd = structuredData || defaultStructuredData;
 ---
 
 <!doctype html>
@@ -36,13 +58,13 @@ import '../styles/global.css';
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#141517" />
+    <meta name="theme-color" content="#141517" id="meta-theme-color" />
     <meta name="msapplication-TileColor" content="#141517" />
-    <meta name="color-scheme" content="light only" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Open Graph -->
     <meta property="og:site_name" content="CineIndustria" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="es_CL" />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
@@ -64,7 +86,8 @@ import '../styles/global.css';
 
     <link rel="canonical" href={canonical} />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="CineIndustria — Ensayos" href="/rss.xml" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/assets/icons/favicon-16.png" sizes="16x16" type="image/png" />
@@ -78,22 +101,40 @@ import '../styles/global.css';
     <link rel="preload" href="/assets/fonts/archivo-subset.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/public-sans-subset.woff2" as="font" type="font/woff2" crossorigin />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "CineIndustria",
-      "url": "https://cineindustria.com/",
-      "description": description,
-      "inLanguage": "es-CL",
-      "publisher": {
-        "@type": "Organization",
-        "name": "CineIndustria",
-        "url": "https://cineindustria.com/",
-        "logo": "https://cineindustria.com/assets/icons/icon-512.png"
-      }
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Dark mode: prevent flash -->
+    <script is:inline>
+      (function(){
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Google Analytics -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
   </head>
   <body>
     <slot />
+    <SearchOverlay />
+
+    <!-- Dark mode toggle -->
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.toggle('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+    </script>
   </body>
 </html>

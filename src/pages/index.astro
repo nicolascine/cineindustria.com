@@ -1,7 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import FilmCarousel from '../components/FilmCarousel.astro';
-import { stats, manifesto, series } from '../data/content';
+import { getCollection } from 'astro:content';
+import { stats, manifesto } from '../data/content';
+
+const ensayos = await getCollection('ensayos');
+const peliculas = await getCollection('peliculas');
 ---
 
 <Base
@@ -9,32 +15,7 @@ import { stats, manifesto, series } from '../data/content';
   description="Laboratorio editorial para repensar la imagen, el cine y el archivo en la era de la IA desde Latinoamérica."
 >
   <div class="site-shell">
-    <header class="site-header">
-      <a class="brandmark" href="#top" aria-label="CineIndustria">
-        <span class="brandmark-mark">
-          <img
-            src="/assets/icons/logo-mark.png"
-            alt="Logo CineIndustria"
-            width="120"
-            height="90"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </span>
-        <span class="brandmark-copy">
-          <strong>CineIndustria</strong>
-          <small>cine / imagen / archivo</small>
-        </span>
-      </a>
-
-      <nav class="site-nav" aria-label="Secciones">
-        <a href="#preguntas">Preguntas</a>
-        <a href="#ensayos">Ensayos</a>
-        <a href="#peliculas">Películas</a>
-        <a href="#laboratorio">Laboratorio</a>
-      </nav>
-    </header>
+    <Header />
 
     <main id="top">
       <!-- Hero -->
@@ -164,12 +145,12 @@ import { stats, manifesto, series } from '../data/content';
           </p>
         </div>
         <div class="series-grid">
-          {series.map((item) => (
-            <article class="series-card">
-              <em>{item.tag}</em>
-              <strong>{item.title}</strong>
-              <p>{item.description}</p>
-            </article>
+          {ensayos.map((entry) => (
+            <a href={`/ensayos/${entry.id}/`} class="series-card series-card-link">
+              <em>{entry.data.author} / {entry.data.year}</em>
+              <strong>{entry.data.title}</strong>
+              <p>{entry.data.description}</p>
+            </a>
           ))}
         </div>
       </section>
@@ -198,37 +179,6 @@ import { stats, manifesto, series } from '../data/content';
       </section>
     </main>
 
-    <footer class="site-footer" id="laboratorio">
-      <div class="footer-top">
-        <div class="footer-mark">
-          <p class="section-kicker">Laboratorio</p>
-          <h2>Hackear la imagen. Defender el montaje.</h2>
-        </div>
-        <div class="footer-panel">
-          <p>
-            Cineastas, artistas, técnicos y libre pensadores leyendo la imagen desde Latinoamérica.
-          </p>
-          <p>
-            Cine, teoría crítica, archivo, software e IA sin obediencia al sistema cultural dominante.
-          </p>
-        </div>
-      </div>
-
-      <div class="footer-rows">
-        <article class="footer-column">
-          <span>Base</span>
-          <p>cine / teoría de la imagen / archivo / montaje</p>
-        </article>
-        <article class="footer-column">
-          <span>Práctica</span>
-          <p>piezas / ensayos / cuadernos / sistemas editoriales</p>
-        </article>
-      </div>
-
-      <div class="footer-bottom">
-        <strong>CineIndustria</strong>
-        <span>señal en desarrollo &bull; online</span>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </Base>

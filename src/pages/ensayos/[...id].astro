@@ -1,0 +1,68 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const ensayos = await getCollection('ensayos');
+  return ensayos.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": entry.data.title,
+  "description": entry.data.ogDescription || entry.data.description,
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author,
+  },
+  "datePublished": `${entry.data.year}-01-01`,
+  "publisher": {
+    "@type": "Organization",
+    "name": "CineIndustria",
+    "url": "https://cineindustria.com/",
+    "logo": "https://cineindustria.com/assets/icons/icon-512.png",
+  },
+  "mainEntityOfPage": `https://cineindustria.com/ensayos/${entry.id}/`,
+  "inLanguage": "es-CL",
+};
+---
+
+<Base
+  title={`${entry.data.title} — CineIndustria`}
+  description={entry.data.ogDescription || entry.data.description}
+  ogType="article"
+  structuredData={structuredData}
+>
+  <div class="site-shell">
+    <Header showBack />
+
+    <main id="top">
+      <article class="detail-page">
+        <div class="detail-header">
+          <p class="section-kicker">{entry.data.author} / {entry.data.year}</p>
+          <h1>{entry.data.title}</h1>
+          <p class="detail-lead">{entry.data.description}</p>
+        </div>
+
+        <div class="detail-content prose">
+          <Content />
+        </div>
+
+        <div class="detail-back">
+          <a href="/#ensayos" class="button button-ghost">&larr; Volver a ensayos</a>
+        </div>
+      </article>
+    </main>
+
+    <Footer />
+  </div>
+</Base>
