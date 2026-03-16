@@ -17,6 +17,7 @@ dist/
 build/
 .parcel-cache/
 .vite/
+.astro/
 
 # Python caches
 __pycache__/

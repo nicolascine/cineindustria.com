@@ -1,0 +1,165 @@
+---
+import { visualMap } from '../data/content';
+---
+
+<section class="section visual-map" id="peliculas">
+  <div class="section-head visual-map-head">
+    <p class="section-kicker">Películas</p>
+    <h2>Películas para calibrar la mirada.</h2>
+    <p class="references-note">Cinco cortes para afinar la mirada.</p>
+  </div>
+
+  <div class="film-stage-shell">
+    <div class="film-stage" id="film-stage" aria-live="polite">
+      {visualMap.map((item, index) => (
+        <article
+          class:list={["film-stage-card", { "is-active": index === 0 }]}
+          id={`film-panel-${index}`}
+          role="tabpanel"
+          aria-hidden={index === 0 ? "false" : "true"}
+          aria-labelledby={`film-thumb-${index}`}
+          aria-label={item.title}
+          data-film-panel={index}
+        >
+          <div class="film-stage-media">
+            <img
+              class="film-stage-image"
+              src={item.image}
+              alt={item.title}
+              loading={index < 2 ? "eager" : "lazy"}
+              decoding="async"
+              fetchpriority={index === 0 ? "high" : "auto"}
+              width="1400"
+              height="700"
+            />
+          </div>
+          <div class="film-stage-overlay">
+            <div class="film-stage-copy">
+              <p class="film-stage-label">{item.label}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+            <div class="film-stage-meta">
+              <span>{item.director}</span>
+              <span>{item.year}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="film-rail">
+      <div class="film-rail-copy">
+        <span>Selección breve</span>
+        <p>Cinco películas. Cinco formas de tensar la imagen.</p>
+      </div>
+      <div class="film-controls" aria-label="Navegación de películas">
+        <button class="film-control" id="film-prev" type="button" aria-label="Película anterior">
+          <span aria-hidden="true">←</span>
+        </button>
+        <div class="film-counter" id="film-counter">01 / 05</div>
+        <button class="film-control" id="film-next" type="button" aria-label="Película siguiente">
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="film-strip" id="film-strip" role="tablist" aria-label="Selección de películas">
+      {visualMap.map((item, index) => (
+        <button
+          class:list={["film-thumb", { "is-active": index === 0 }]}
+          id={`film-thumb-${index}`}
+          type="button"
+          role="tab"
+          aria-selected={index === 0 ? "true" : "false"}
+          aria-controls={`film-panel-${index}`}
+          aria-label={item.title}
+          data-film-thumb={index}
+        >
+          <span class="film-thumb-media">
+            <img
+              src={item.thumb || item.image}
+              alt={`Fotograma de ${item.title}`}
+              loading="lazy"
+              decoding="async"
+              width="440"
+              height="275"
+            />
+          </span>
+          <span class="film-thumb-copy">
+            <span class="film-thumb-index">{String(index + 1).padStart(2, "0")}</span>
+            <strong>{item.title}</strong>
+            <span>{item.label}</span>
+          </span>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const filmStageRoot = document.querySelector("#film-stage");
+  const filmStripRoot = document.querySelector("#film-strip");
+  const filmCounterRoot = document.querySelector("#film-counter");
+  const filmPrevButton = document.querySelector("#film-prev");
+  const filmNextButton = document.querySelector("#film-next");
+
+  if (filmStageRoot && filmStripRoot && filmCounterRoot && filmPrevButton && filmNextButton) {
+    const filmPanels = [...filmStageRoot.querySelectorAll("[data-film-panel]")] as HTMLElement[];
+    const filmThumbs = [...filmStripRoot.querySelectorAll("[data-film-thumb]")] as HTMLElement[];
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const totalFilms = filmPanels.length;
+    let activeFilm = 0;
+
+    const updateFilmCarousel = (nextIndex: number) => {
+      activeFilm = (nextIndex + totalFilms) % totalFilms;
+
+      filmPanels.forEach((panel, index) => {
+        const isActive = index === activeFilm;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+
+      filmThumbs.forEach((thumb, index) => {
+        const isActive = index === activeFilm;
+        thumb.classList.toggle("is-active", isActive);
+        thumb.setAttribute("aria-selected", isActive ? "true" : "false");
+        if (isActive) {
+          thumb.scrollIntoView({
+            behavior: prefersReducedMotion ? "auto" : "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      });
+
+      filmCounterRoot.textContent = `${String(activeFilm + 1).padStart(2, "0")} / ${String(totalFilms).padStart(2, "0")}`;
+    };
+
+    filmThumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        updateFilmCarousel(Number((thumb as HTMLElement).dataset.filmThumb));
+      });
+
+      thumb.addEventListener("keydown", (event) => {
+        if ((event as KeyboardEvent).key === "ArrowRight") {
+          event.preventDefault();
+          const targetIndex = (activeFilm + 1) % totalFilms;
+          updateFilmCarousel(targetIndex);
+          filmThumbs[targetIndex]?.focus();
+        }
+        if ((event as KeyboardEvent).key === "ArrowLeft") {
+          event.preventDefault();
+          const targetIndex = (activeFilm - 1 + totalFilms) % totalFilms;
+          updateFilmCarousel(targetIndex);
+          filmThumbs[targetIndex]?.focus();
+        }
+      });
+    });
+
+    filmPrevButton.addEventListener("click", () => updateFilmCarousel(activeFilm - 1));
+    filmNextButton.addEventListener("click", () => updateFilmCarousel(activeFilm + 1));
+
+    updateFilmCarousel(0);
+  }
+</script>

@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import FilmCarousel from '../components/FilmCarousel.astro';
+import { stats, manifesto, series } from '../data/content';
+---
+
+<Base
+  title="CineIndustria | Cine, imagen y archivo desde Latinoamérica"
+  description="Laboratorio editorial para repensar la imagen, el cine y el archivo en la era de la IA desde Latinoamérica."
+>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brandmark" href="#top" aria-label="CineIndustria">
+        <span class="brandmark-mark">
+          <img
+            src="/assets/icons/logo-mark.png"
+            alt="Logo CineIndustria"
+            width="120"
+            height="90"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </span>
+        <span class="brandmark-copy">
+          <strong>CineIndustria</strong>
+          <small>cine / imagen / archivo</small>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Secciones">
+        <a href="#preguntas">Preguntas</a>
+        <a href="#ensayos">Ensayos</a>
+        <a href="#peliculas">Películas</a>
+        <a href="#laboratorio">Laboratorio</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Laboratorio para repensar la imagen / desde Latinoamérica</p>
+          <h1>
+            Cine, imagen y archivo.
+            <span>Laboratorio editorial.</span>
+            Señal en desarrollo.
+          </h1>
+          <p class="hero-text">
+            CineIndustria lee la crisis contemporánea de la imagen. Cine, archivo, teoría crítica,
+            software e IA en una misma mesa.
+          </p>
+          <p class="hero-subtext">
+            Menos flujo. Más lectura, montaje y conflicto.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-ink" href="#preguntas">Abrir preguntas</a>
+            <a class="button button-ghost" href="#peliculas">Ver películas</a>
+          </div>
+
+          <ul class="hero-stats">
+            {stats.map((item) => (
+              <li>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <aside class="hero-panel" aria-label="Resumen editorial">
+          <div class="hero-panel-block">
+            <p class="section-kicker">Punto de partida</p>
+            <h2>La imagen ya no garantiza evidencia.</h2>
+            <p>
+              Si producir imágenes se volvió trivial, leerlas vuelve a ser una tarea seria.
+            </p>
+          </div>
+
+          <div class="hero-panel-grid">
+            <article class="hero-note">
+              <span>Verdad</span>
+              <p>No toda verdad visual es evidencia.</p>
+            </article>
+            <article class="hero-note">
+              <span>Técnica</span>
+              <p>Todo aparato reorganiza la mirada.</p>
+            </article>
+            <article class="hero-note hero-note-dark">
+              <span>Sistema cultural</span>
+              <p>Las plataformas también producen estética.</p>
+            </article>
+          </div>
+
+          <div class="hero-visual" aria-label="Archivo visual">
+            <figure class="hero-visual-main">
+              <img
+                src="/assets/site/hero-poster-red.webp"
+                alt="Póster rojo del archivo CineIndustria."
+                width="960"
+                height="1200"
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption>
+                <strong>signal_01</strong>
+                <span>archivo activo / imagen en disputa</span>
+              </figcaption>
+            </figure>
+
+            <div class="hero-visual-stack">
+              <figure class="hero-visual-card">
+                <img
+                  src="/assets/site/hero-poster-ink.webp"
+                  alt="Póster en tinta del archivo CineIndustria."
+                  width="960"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <figure class="hero-visual-card">
+                <img
+                  src="/assets/site/hero-poster-paper.webp"
+                  alt="Póster en papel del archivo CineIndustria."
+                  width="960"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Preguntas -->
+      <section class="section manifesto" id="preguntas">
+        <div class="section-head">
+          <p class="section-kicker">Preguntas</p>
+          <h2>Tres preguntas para no mirar en automático.</h2>
+          <p class="section-intro">
+            Ver ya no alcanza. Hay que discutir qué se mira, desde dónde y bajo qué sistema técnico.
+          </p>
+        </div>
+        <div class="manifesto-grid">
+          {manifesto.map((item) => (
+            <article class="manifesto-card">
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Ensayos -->
+      <section class="section essay-section" id="ensayos">
+        <div class="section-head">
+          <p class="section-kicker">Ensayos</p>
+          <h2>Textos para hackear la mirada.</h2>
+          <p class="section-intro">
+            No es bibliografía ornamental. Es una caja de herramientas crítica.
+          </p>
+        </div>
+        <div class="series-grid">
+          {series.map((item) => (
+            <article class="series-card">
+              <em>{item.tag}</em>
+              <strong>{item.title}</strong>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Películas -->
+      <FilmCarousel />
+
+      <!-- Lab Band -->
+      <section class="section lab-band" aria-label="Posición frente a la IA">
+        <div class="lab-band-shell">
+          <div class="lab-band-head">
+            <p class="section-kicker">Ahora</p>
+            <h2>La IA volvió trivial la producción visual. La tarea difícil vuelve a ser mirar.</h2>
+          </div>
+          <div class="lab-band-copy">
+            <p>
+              CineIndustria trabaja entre memoria fílmica, teoría de la imagen, crítica cultural,
+              archivo, software e imagen sintética.
+            </p>
+            <p>
+              La apuesta no es producir más flujo. Es sostener una práctica editorial capaz de
+              discutir el presente con imágenes.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="laboratorio">
+      <div class="footer-top">
+        <div class="footer-mark">
+          <p class="section-kicker">Laboratorio</p>
+          <h2>Hackear la imagen. Defender el montaje.</h2>
+        </div>
+        <div class="footer-panel">
+          <p>
+            Cineastas, artistas, técnicos y libre pensadores leyendo la imagen desde Latinoamérica.
+          </p>
+          <p>
+            Cine, teoría crítica, archivo, software e IA sin obediencia al sistema cultural dominante.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-rows">
+        <article class="footer-column">
+          <span>Base</span>
+          <p>cine / teoría de la imagen / archivo / montaje</p>
+        </article>
+        <article class="footer-column">
+          <span>Práctica</span>
+          <p>piezas / ensayos / cuadernos / sistemas editoriales</p>
+        </article>
+      </div>
+
+      <div class="footer-bottom">
+        <strong>CineIndustria</strong>
+        <span>señal en desarrollo &bull; online</span>
+      </div>
+    </footer>
+  </div>
+</Base>
