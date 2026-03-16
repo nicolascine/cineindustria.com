@@ -18,6 +18,7 @@ const {
 } = Astro.props;
 
 import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 
 const defaultStructuredData = {
@@ -103,14 +104,7 @@ const jsonLd = structuredData || defaultStructuredData;
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <!-- Google Analytics -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    <Analytics />
   </head>
   <body>
     <a href="#top" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:p-3 focus:bg-[var(--color-night)] focus:text-[color:var(--color-paper-strong)] focus:rounded-lg focus:no-underline">Ir al contenido</a>

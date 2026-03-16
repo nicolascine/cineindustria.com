@@ -1,0 +1,19 @@
+---
+const gaId = import.meta.env.PUBLIC_GA_ID || '';
+---
+
+{gaId && (
+  <script is:inline id="ga-init" data-ga-id={gaId}>
+    (function() {
+      var id = document.getElementById('ga-init').getAttribute('data-ga-id');
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', id);
+    })();
+  </script>
+)}
