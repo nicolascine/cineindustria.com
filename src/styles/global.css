@@ -95,8 +95,10 @@ body::after {
   z-index: 9999;
 }
 
-a {
-  color: inherit;
+@layer base {
+  a {
+    color: inherit;
+  }
 }
 
 a:focus-visible,

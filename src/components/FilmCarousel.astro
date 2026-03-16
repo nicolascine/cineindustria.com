@@ -4,9 +4,9 @@ import { visualMap } from '../data/content';
 
 <section class="relative p-0 border-none bg-transparent shadow-none" id="peliculas">
   <div class="grid gap-3 max-w-[840px] mb-0 min-w-0 px-1.5 pb-[22px]">
-    <p class="m-0 text-[var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Películas</p>
+    <p class="m-0 text-[color:var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.76rem] leading-none tracking-[0.16em] uppercase">Películas</p>
     <h2 class="m-0 font-[family-name:var(--font-archivo)] font-semibold text-[clamp(2.4rem,13vw,3.8rem)] lg:text-[clamp(2.2rem,5vw,4rem)] leading-[0.98] tracking-[-0.06em]">Películas para calibrar la mirada.</h2>
-    <p class="m-0 text-[var(--color-ink-soft)] text-base leading-[1.7] max-w-[64ch]">Cinco cortes para afinar la mirada.</p>
+    <p class="m-0 text-[color:var(--color-ink-soft)] text-base leading-[1.7] max-w-[64ch]">Cinco cortes para afinar la mirada.</p>
   </div>
 
   <div class="relative">
@@ -36,7 +36,7 @@ import { visualMap } from '../data/content';
           <div class="relative z-[1] h-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto] content-end gap-[18px] lg:gap-[22px] p-[22px] lg:p-[clamp(24px,4vw,42px)]">
             <div class="grid gap-3 max-w-[36rem] min-w-0">
               <p class="m-0 text-[rgba(248,242,235,0.68)] font-[family-name:var(--font-archivo)] text-[0.74rem] leading-none tracking-[0.16em] uppercase">{item.label}</p>
-              <h3 class="m-0 text-[var(--color-paper-strong)] font-[family-name:var(--font-archivo)] text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.92] tracking-[-0.07em]">{item.title}</h3>
+              <h3 class="m-0 text-[color:var(--color-paper-strong)] font-[family-name:var(--font-archivo)] text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.92] tracking-[-0.07em]">{item.title}</h3>
               <p class="m-0 text-[rgba(248,242,235,0.82)] text-[0.96rem] lg:text-[1.02rem] leading-[1.7] max-w-[30ch] lg:max-w-none">{item.text}</p>
             </div>
             <div class="grid justify-items-start lg:justify-items-end content-end gap-2.5 grid-flow-row lg:grid-flow-row">
@@ -49,16 +49,16 @@ import { visualMap } from '../data/content';
     </div>
 
     <div class="relative z-[2] flex flex-col md:flex-row items-stretch md:items-end justify-between gap-[18px] -mt-8 md:-mt-[54px] mx-3 md:mx-7">
-      <div class="grid gap-2 max-w-none md:max-w-[25rem] p-[18px_20px] border border-[rgba(248,242,235,0.1)] rounded-3xl bg-[rgba(16,17,20,0.82)] text-[var(--color-paper-strong)] shadow-[0_18px_40px_rgba(21,21,23,0.16)] backdrop-blur-[16px]">
+      <div class="grid gap-2 max-w-none md:max-w-[25rem] p-[18px_20px] border border-[rgba(248,242,235,0.1)] rounded-3xl bg-[rgba(16,17,20,0.82)] text-[color:var(--color-paper-strong)] shadow-[0_18px_40px_rgba(21,21,23,0.16)] backdrop-blur-[16px]">
         <span class="font-[family-name:var(--font-archivo)] text-[0.74rem] leading-none tracking-[0.16em] uppercase text-[rgba(248,242,235,0.6)]">Selección breve</span>
         <p class="m-0 text-[rgba(248,242,235,0.86)] leading-[1.55]">Cinco películas. Cinco formas de tensar la imagen.</p>
       </div>
       <div class="inline-flex items-center justify-between md:justify-start gap-2.5 p-2 px-2.5 rounded-full bg-[rgba(248,242,235,0.86)] shadow-[0_16px_36px_rgba(21,21,23,0.12)]" aria-label="Navegación de películas">
-        <button class="film-control w-11 h-11 grid place-items-center border border-[rgba(21,21,23,0.12)] rounded-full bg-[rgba(255,255,255,0.72)] text-[var(--color-ink)] cursor-pointer" id="film-prev" type="button" aria-label="Película anterior">
+        <button class="film-control w-11 h-11 grid place-items-center border border-[rgba(21,21,23,0.12)] rounded-full bg-[rgba(255,255,255,0.72)] text-[color:var(--color-ink)] cursor-pointer" id="film-prev" type="button" aria-label="Película anterior">
           <span aria-hidden="true" class="font-[family-name:var(--font-archivo)] text-[1.1rem] leading-none">&#8592;</span>
         </button>
-        <div class="min-w-[74px] text-center text-[var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.74rem] leading-none tracking-[0.16em] uppercase" id="film-counter">01 / 05</div>
-        <button class="film-control w-11 h-11 grid place-items-center border border-[rgba(21,21,23,0.12)] rounded-full bg-[rgba(255,255,255,0.72)] text-[var(--color-ink)] cursor-pointer" id="film-next" type="button" aria-label="Película siguiente">
+        <div class="min-w-[74px] text-center text-[color:var(--color-ink-soft)] font-[family-name:var(--font-archivo)] text-[0.74rem] leading-none tracking-[0.16em] uppercase" id="film-counter">01 / 05</div>
+        <button class="film-control w-11 h-11 grid place-items-center border border-[rgba(21,21,23,0.12)] rounded-full bg-[rgba(255,255,255,0.72)] text-[color:var(--color-ink)] cursor-pointer" id="film-next" type="button" aria-label="Película siguiente">
           <span aria-hidden="true" class="font-[family-name:var(--font-archivo)] text-[1.1rem] leading-none">&#8594;</span>
         </button>
       </div>
@@ -67,7 +67,7 @@ import { visualMap } from '../data/content';
     <div class="grid grid-flow-col auto-cols-[minmax(220px,76vw)] md:auto-cols-[minmax(240px,30vw)] lg:auto-cols-[minmax(220px,22vw)] gap-4 mt-[18px] lg:mt-[22px] px-0 lg:px-1.5 pb-1.5 overflow-x-auto snap-x snap-mandatory scrollbar-hide" id="film-strip" role="tablist" aria-label="Selección de películas">
       {visualMap.map((item, index) => (
         <button
-          class:list={["film-thumb grid gap-3 p-0 border-none bg-transparent text-[var(--color-ink)] text-left cursor-pointer snap-start", { "is-active": index === 0 }]}
+          class:list={["film-thumb grid gap-3 p-0 border-none bg-transparent text-[color:var(--color-ink)] text-left cursor-pointer snap-start", { "is-active": index === 0 }]}
           id={`film-thumb-${index}`}
           type="button"
           role="tab"
@@ -90,7 +90,7 @@ import { visualMap } from '../data/content';
           <span class="grid gap-1.5 px-1">
             <span class="font-[family-name:var(--font-archivo)] text-[0.74rem] leading-none tracking-[0.16em] uppercase">{String(index + 1).padStart(2, "0")}</span>
             <strong class="font-[family-name:var(--font-archivo)] text-[1.08rem] leading-none tracking-[-0.04em]">{item.title}</strong>
-            <span class="text-[var(--color-ink-soft)] text-[0.9rem] leading-[1.45]">{item.label}</span>
+            <span class="text-[color:var(--color-ink-soft)] text-[0.9rem] leading-[1.45]">{item.label}</span>
           </span>
         </button>
       ))}
