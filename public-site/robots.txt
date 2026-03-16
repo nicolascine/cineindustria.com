@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: cineindustria.com
+Sitemap: https://cineindustria.com/sitemap.xml
