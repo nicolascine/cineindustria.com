@@ -1,7 +1,7 @@
 {
-  "name": "Cineindustria",
-  "short_name": "Cineindustria",
-  "description": "Plataforma editorial sobre cine, imagen, archivo y procesos visuales hecha desde Latinoamérica.",
+  "name": "CineIndustria",
+  "short_name": "CineIndustria",
+  "description": "Laboratorio editorial para repensar la imagen, el cine y el archivo en la era de la IA desde Latinoamérica.",
   "id": "/",
   "scope": "/",
   "start_url": "/",
